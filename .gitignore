@@ -1,0 +1,8 @@
+out/
+cache/
+broadcast/
+.env
+
+.testnet-wallets.json
+.testnet-deploy.json
+.testnet-lifecycle-state.json
