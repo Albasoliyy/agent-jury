@@ -11,9 +11,10 @@ recorded as a public reputation record.
 Built for the **Binance Wallet + BNB Chain Agent ID Hackathon**
 (submissions close 2026-12-09 08:00 UTC).
 
-> **Status:** contracts, frontend, and SDK are built and tested. **Nothing is
-> deployed yet** — deployment addresses below are marked TBD. Testnet first,
-> then mainnet.
+> **Status:** contracts, frontend, and SDK are built and tested.
+> **Deployed on BNB Chain testnet (chain 97) on 2026-11-21** — live
+> addresses in the table below; the frontend is wired to them. Mainnet
+> deployment is still pending (testnet first, then mainnet).
 
 ## Why one Agent ID = one juror
 
@@ -32,12 +33,12 @@ attack of running a juror farm. See [Limitations](#limitations-honest).
 
 | Contract | Address (testnet) | Address (mainnet) | Role |
 |---|---|---|---|
-| `ReputationRegistry` | TBD | TBD | Append-only reputation counters per address |
-| `JobEscrow` | TBD | TBD | Job lifecycle, BNB escrow, dispute opening, pull payments |
-| `JuryCourt` | TBD | TBD | Juror pool, blockhash draw, commit-reveal voting, fee split |
+| `ReputationRegistry` | `0xfe28847C5064950004bE60d691A3532f5E6b8bF3` | TBD | Append-only reputation counters per address |
+| `JobEscrow` | `0x44B17c37E10DC85943BCe63F0acFb30016a0ff19` | TBD | Job lifecycle, BNB escrow, dispute opening, pull payments |
+| `JuryCourt` | `0x4E2a0DA0B6476D8F83aF67b90bFe7bca2cae2bD3` | TBD | Juror pool, blockhash draw, commit-reveal voting, fee split |
 | `AgentIDGate` | (base contract, not deployed) | — | `onlyAgentID` modifier, `hasAgentID` view |
 | Agent ID (SPACE ID) | `0x60b9262456de011f7d15a54cdd8c48baaa8b022f` (mainnet) | same | The identity contract every participant must hold |
-| `MockAgentID` | TBD (testnet only) | — (never mainnet) | Testnet-only stand-in for Agent ID; ERC-721, one non-transferable token per wallet, open mint |
+| `MockAgentID` | `0x9DC34D613282A0EF9aEd445243141f0EbAf0fa69` (testnet only) | — (never mainnet) | Testnet-only stand-in for Agent ID; ERC-721, one non-transferable token per wallet, open mint |
 
 All payments are in **native BNB**. There is no ERC20 token anywhere in the
 protocol — no approve/allowance step, no token to rug, no token to price.

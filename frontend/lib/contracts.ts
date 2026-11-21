@@ -14,24 +14,20 @@ export const AGENT_ID_ADDRESS =
   "0x60b9262456de011f7d15a54cdd8c48baaa8b022f" as const;
 
 /**
- * Deployment addresses.
+ * Deployment addresses — BNB Chain Testnet (97), deployed 2026-11-21.
  *
- * The contracts are NOT deployed yet. These are placeholder zero
- * addresses; Milestone 7 (deployment) fills them in with the real
- * BNB Chain Testnet / Mainnet addresses. Until then the UI renders
- * a "not deployed yet" state and every contract call is disabled
- * instead of failing against a wrong address.
- *
- * Chain target for the first deployment: BNB Chain Testnet (97).
- * Agent ID itself lives on BNB Chain Mainnet (56) and is read
- * directly from mainnet for eligibility checks.
+ * Testnet demo uses the testnet-only MockAgentID as the identity
+ * contract (the real Agent ID has no testnet deployment). Mainnet
+ * deploys use the real Agent ID (AGENT_ID_ADDRESS) and get their own
+ * addresses here; see README.md for the address table.
  */
 export const CONTRACTS = {
-  jobEscrow: "0x0000000000000000000000000000000000000000" as const,
-  juryCourt: "0x0000000000000000000000000000000000000000" as const,
+  jobEscrow: "0x44B17c37E10DC85943BCe63F0acFb30016a0ff19" as const,
+  juryCourt: "0x4E2a0DA0B6476D8F83aF67b90bFe7bca2cae2bD3" as const,
   reputationRegistry:
-    "0x0000000000000000000000000000000000000000" as const,
-  agentID: AGENT_ID_ADDRESS,
+    "0xfe28847C5064950004bE60d691A3532f5E6b8bF3" as const,
+  agentID:
+    "0x9DC34D613282A0EF9aEd445243141f0EbAf0fa69" as const, // MockAgentID (testnet only)
 } as const;
 
 export const ZERO_ADDRESS =
@@ -39,12 +35,12 @@ export const ZERO_ADDRESS =
 
 /** True once the contracts have real deployment addresses. */
 export const DEPLOYED =
-  CONTRACTS.jobEscrow !== ZERO_ADDRESS &&
-  CONTRACTS.juryCourt !== ZERO_ADDRESS &&
-  CONTRACTS.reputationRegistry !== ZERO_ADDRESS;
+  (CONTRACTS.jobEscrow as string) !== ZERO_ADDRESS &&
+  (CONTRACTS.juryCourt as string) !== ZERO_ADDRESS &&
+  (CONTRACTS.reputationRegistry as string) !== ZERO_ADDRESS;
 
-/** First block to scan for protocol events once deployed (set at deploy time). */
-export const DEPLOY_BLOCK = 0n;
+/** First block to scan for protocol events (first deploy receipt, 2026-11-21). */
+export const DEPLOY_BLOCK = 144038113n;
 
 /** JobEscrow Status enum (src/JobEscrow.sol). */
 export const JOB_STATUS = [
