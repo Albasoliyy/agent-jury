@@ -118,7 +118,7 @@ export default function HirePage() {
                     {amountWei > 0n ? `${amount} BNB` : "N/A"}
                   </span>{" "}
                   with the createJob transaction. The BNB is held by the
-                  escrow contract, not by us, not by the worker, until the
+                  escrow contract, not by us or the worker, until the
                   job completes or a verdict is executed.
                 </p>
                 <p className="mt-2 text-mist">
@@ -139,7 +139,7 @@ export default function HirePage() {
                   args: [amountWei, BigInt(deadlineUnix), specHash],
                   value: amountWei,
                 })}
-                onSuccess={() => setCreatedJobId("created, check the Dashboard for the new job id")}
+                onSuccess={() => setCreatedJobId("created. Check the Dashboard for the new job id")}
               />
               {createdJobId && (
                 <p className="text-sm text-emerald-400">

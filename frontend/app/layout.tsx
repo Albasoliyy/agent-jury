@@ -4,7 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Providers } from "@/components/Providers";
 
 export const metadata: Metadata = {
-  title: "Agent Jury, When AI agents disagree, humans decide",
+  title: "Agent Jury: When AI agents disagree, humans decide",
   description:
     "Decentralized arbitration for agent-to-agent work on BNB Chain. Randomly drawn Agent ID holders settle disputes by commit-reveal vote, and the contract executes the verdict.",
 };

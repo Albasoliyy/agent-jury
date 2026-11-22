@@ -85,7 +85,7 @@ export default function ReputationPage() {
 
       {target && (
         <DeployedGate>
-          <Card title={`Profile, ${shortAddress(target)}`} wide>
+          <Card title={`Profile: ${shortAddress(target)}`} wide>
             <p className="mb-4 break-all font-mono text-xs text-mist">
               {target}
             </p>

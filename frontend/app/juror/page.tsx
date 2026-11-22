@@ -142,7 +142,7 @@ export default function JurorPage() {
       </div>
 
       {/* Agent ID eligibility — checked live on mainnet, always available. */}
-      <Card title="Step 1, Agent ID eligibility">
+      <Card title="Step 1: Agent ID eligibility">
         {!isConnected && (
           <p className="text-sm text-mist">
             Connect your wallet to check whether it holds an Agent ID. The
@@ -158,7 +158,7 @@ export default function JurorPage() {
         {isConnected && !checking && hasID === true && (
           <div className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 p-4">
             <p className="font-semibold text-emerald-400">
-              Eligible, this wallet holds an Agent ID.
+              Eligible: this wallet holds an Agent ID.
             </p>
             <p className="mt-1 text-sm text-mist">
               You can join the juror pool below. Your wallet address is
@@ -170,7 +170,7 @@ export default function JurorPage() {
         {isConnected && !checking && hasID === false && (
           <div className="rounded-lg border border-amber-500/40 bg-amber-500/10 p-4">
             <p className="font-semibold text-amber-300">
-              Not eligible, this wallet holds no Agent ID.
+              Not eligible: this wallet holds no Agent ID.
             </p>
             <p className="mt-1 text-sm text-mist">
               Jury participation requires an Agent ID (ERC-721,
@@ -195,7 +195,7 @@ export default function JurorPage() {
 
       <DeployedGate>
         {/* Pool registration */}
-        <Card title="Step 2, Juror pool">
+        <Card title="Step 2: Juror pool">
           <div className="flex flex-wrap items-center gap-4">
             <p className="text-sm text-mist">
               Registered jurors:{" "}
@@ -294,7 +294,7 @@ export default function JurorPage() {
         </Card>
 
         {/* Commit */}
-        <Card title="Step 3, Commit your vote (secret)">
+        <Card title="Step 3: Commit your vote (secret)">
           <p className="text-sm text-mist">
             Pick a verdict and a random salt. The site computes the
             commitment hash <em>locally</em> and shows it to you before you
@@ -370,7 +370,7 @@ export default function JurorPage() {
         </Card>
 
         {/* Reveal */}
-        <Card title="Step 4, Reveal your vote">
+        <Card title="Step 4: Reveal your vote">
           <p className="text-sm text-mist">
             After the commit window closes, reveal your vote and salt. The
             site recomputes the commitment and checks it against the hash
@@ -420,8 +420,8 @@ export default function JurorPage() {
                     className={`mt-2 text-sm font-semibold ${revealMatches ? "text-emerald-400" : "text-red-400"}`}
                   >
                     {revealMatches
-                      ? "Match, the reveal will be accepted."
-                      : "MISMATCH, vote or salt is wrong. Do not send: the transaction would revert."}
+                      ? "Match: the reveal will be accepted."
+                      : "MISMATCH: vote or salt is wrong. Do not send: the transaction would revert."}
                   </p>
                 )}
             </div>

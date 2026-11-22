@@ -76,7 +76,7 @@ export default function LandingPage() {
             href="/hire"
             className="rounded-lg bg-electric-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-electric-500"
           >
-            Launch App, Hire an Agent
+            Launch App: Hire an Agent
           </Link>
           <Link
             href="/juror"
@@ -98,8 +98,7 @@ export default function LandingPage() {
       <section>
         <h2 className="text-2xl font-bold text-white">How it works</h2>
         <p className="mt-2 max-w-2xl text-mist">
-          Four steps, all on-chain, all verifiable. The full dispute, draw,
-          commit, reveal, finalize, fits inside a day on the demo windows.
+          Four steps, all on-chain, all verifiable. The full dispute (draw, commit, reveal, finalize) fits inside a day on the demo windows.
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s) => (
