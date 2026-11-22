@@ -8,7 +8,9 @@ import { Card, CasePhaseBadge, StatCard } from "@/components/ui";
 import {
   CONTRACTS,
   DEPLOYED,
+  IS_MOCK_AGENT_ID,
   JuryCourtAbi,
+  MockAgentIDAbi,
   VOTE_CLIENT,
   VOTE_WORKER,
 } from "@/lib/contracts";
@@ -39,6 +41,9 @@ export default function JurorPage() {
   const [hasID, setHasID] = useState<boolean | null>(null);
   const [checking, setChecking] = useState(false);
   const [checkError, setCheckError] = useState<string | null>(null);
+  // Bumped after a mock mint so the eligibility check re-runs without
+  // waiting for the wallet address to change.
+  const [eligibilityRun, setEligibilityRun] = useState(0);
 
   const { data: poolSize } = usePoolSize();
   const { data: poolIndex } = usePoolIndex(address);
@@ -60,8 +65,9 @@ export default function JurorPage() {
   const commitState = useJurorState(commitJobIdBig, address);
   const revealState = useJurorState(revealJobIdBig, address);
 
-  // Agent ID check runs against the real mainnet contract, even before
-  // the Agent Jury contracts are deployed.
+  // Agent ID check runs against the identity contract for this
+  // deployment (the mock on testnet, the real one on mainnet), even
+  // before the Agent Jury contracts are deployed.
   useEffect(() => {
     if (!address) {
       setHasID(null);
@@ -73,7 +79,7 @@ export default function JurorPage() {
       .then(setHasID)
       .catch((e: Error) => setCheckError(e.message))
       .finally(() => setChecking(false));
-  }, [address]);
+  }, [address, eligibilityRun]);
 
   // Auto-fill the reveal salt from local storage when the job changes.
   useEffect(() => {
@@ -141,13 +147,17 @@ export default function JurorPage() {
         </p>
       </div>
 
-      {/* Agent ID eligibility — checked live on mainnet, always available. */}
+      {/* Agent ID eligibility: checked live against the identity contract for this deployment. */}
       <Card title="Step 1: Agent ID eligibility">
         {!isConnected && (
           <p className="text-sm text-mist">
-            Connect your wallet to check whether it holds an Agent ID. The
-            check reads <code className="font-mono text-xs">balanceOf</code>{" "}
-            on the official Agent ID contract on BNB Chain mainnet.
+            {IS_MOCK_AGENT_ID
+              ? "Connect your wallet to check whether it holds a mock Agent ID. The check reads "
+              : "Connect your wallet to check whether it holds an Agent ID. The check reads "}
+            <code className="font-mono text-xs">balanceOf</code>{" "}
+            {IS_MOCK_AGENT_ID
+              ? "on the free mock Agent ID contract on BNB Chain testnet, one per wallet."
+              : "on the official Agent ID contract on BNB Chain mainnet."}
           </p>
         )}
         {isConnected && checking && (
@@ -158,7 +168,9 @@ export default function JurorPage() {
         {isConnected && !checking && hasID === true && (
           <div className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 p-4">
             <p className="font-semibold text-emerald-400">
-              Eligible: this wallet holds an Agent ID.
+              {IS_MOCK_AGENT_ID
+                ? "Eligible: this wallet holds a mock Agent ID."
+                : "Eligible: this wallet holds an Agent ID."}
             </p>
             <p className="mt-1 text-sm text-mist">
               You can join the juror pool below. Your wallet address is
@@ -169,21 +181,54 @@ export default function JurorPage() {
         )}
         {isConnected && !checking && hasID === false && (
           <div className="rounded-lg border border-amber-500/40 bg-amber-500/10 p-4">
-            <p className="font-semibold text-amber-300">
-              Not eligible: this wallet holds no Agent ID.
-            </p>
-            <p className="mt-1 text-sm text-mist">
-              Jury participation requires an Agent ID (ERC-721,
-              non-transferable, one per person), claimed through Binance
-              Wallet. Without one, this wallet cannot register as a juror,
-              vote, or earn juror rewards. Holding an Agent ID does not
-              guarantee one human per wallet in every situation, it makes
-              duplicate juror participation much harder.
-            </p>
-            <p className="mt-2 font-mono text-xs text-mist">
-              Agent ID: 0x60b9262456de011f7d15a54cdd8c48baaa8b022f (BNB Chain
-              mainnet)
-            </p>
+            {IS_MOCK_AGENT_ID ? (
+              <>
+                <p className="font-semibold text-amber-300">
+                  Not eligible: this wallet holds no mock Agent ID.
+                </p>
+                <p className="mt-1 text-sm text-mist">
+                  This is the testnet demo, so jury participation uses a
+                  free mock Agent ID (ERC-721, non-transferable, one per
+                  wallet) instead of the real Agent ID. Mint one below,
+                  then this check runs again and you can join the juror
+                  pool.
+                </p>
+                <div className="mt-3">
+                  <TxButton
+                    label="Mint free mock Agent ID"
+                    title="Mint one free mock Agent ID to this wallet. Testnet only, one per wallet."
+                    prepare={() => ({
+                      address: CONTRACTS.agentID,
+                      abi: MockAgentIDAbi,
+                      functionName: "mint",
+                      args: [address as `0x${string}`],
+                    })}
+                    onSuccess={() => setEligibilityRun((n) => n + 1)}
+                  />
+                </div>
+                <p className="mt-2 font-mono text-xs text-mist">
+                  Mock Agent ID: {CONTRACTS.agentID} (BNB Chain testnet)
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="font-semibold text-amber-300">
+                  Not eligible: this wallet holds no Agent ID.
+                </p>
+                <p className="mt-1 text-sm text-mist">
+                  Jury participation requires an Agent ID (ERC-721,
+                  non-transferable, one per person), claimed through Binance
+                  Wallet. Without one, this wallet cannot register as a juror,
+                  vote, or earn juror rewards. Holding an Agent ID does not
+                  guarantee one human per wallet in every situation, it makes
+                  duplicate juror participation much harder.
+                </p>
+                <p className="mt-2 font-mono text-xs text-mist">
+                  Agent ID: 0x60b9262456de011f7d15a54cdd8c48baaa8b022f (BNB Chain
+                  mainnet)
+                </p>
+              </>
+            )}
           </div>
         )}
         {checkError && (

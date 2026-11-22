@@ -1,10 +1,12 @@
 import { createPublicClient, http } from "viem";
-import { bsc } from "viem/chains";
+import { bsc, bscTestnet } from "viem/chains";
 import { useReadContract, useReadContracts } from "wagmi";
 import {
+  AGENT_ID_ADDRESS,
   AgentIDAbi,
   CONTRACTS,
   DEPLOYED,
+  IS_MOCK_AGENT_ID,
   JobEscrowAbi,
   JuryCourtAbi,
   ReputationRegistryAbi,
@@ -16,10 +18,30 @@ const mainnetClient = createPublicClient({
   transport: http(),
 });
 
-/** Does `address` hold an Agent ID (balanceOf > 0 on mainnet)? */
+/** Mock Agent ID lives on BNB Chain Testnet, read it there. */
+const testnetClient = createPublicClient({
+  chain: bscTestnet,
+  transport: http(),
+});
+
+/**
+ * Does `address` hold an Agent ID (balanceOf > 0)? On the testnet
+ * deployment the identity contract is the free MockAgentID, so the
+ * check reads it on testnet. On mainnet it reads the official Agent
+ * ID on mainnet, exactly as before.
+ */
 export async function checkAgentID(address: `0x${string}`): Promise<boolean> {
+  if (IS_MOCK_AGENT_ID) {
+    const bal = await testnetClient.readContract({
+      address: CONTRACTS.agentID,
+      abi: AgentIDAbi,
+      functionName: "balanceOf",
+      args: [address],
+    });
+    return bal > 0n;
+  }
   const bal = await mainnetClient.readContract({
-    address: CONTRACTS.agentID,
+    address: AGENT_ID_ADDRESS,
     abi: AgentIDAbi,
     functionName: "balanceOf",
     args: [address],

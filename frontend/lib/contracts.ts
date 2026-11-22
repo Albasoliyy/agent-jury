@@ -1,9 +1,16 @@
 import { AgentIDAbi } from "./abi/AgentID";
 import { JobEscrowAbi } from "./abi/JobEscrow";
 import { JuryCourtAbi } from "./abi/JuryCourt";
+import { MockAgentIDAbi } from "./abi/MockAgentID";
 import { ReputationRegistryAbi } from "./abi/ReputationRegistry";
 
-export { AgentIDAbi, JobEscrowAbi, JuryCourtAbi, ReputationRegistryAbi };
+export {
+  AgentIDAbi,
+  JobEscrowAbi,
+  JuryCourtAbi,
+  MockAgentIDAbi,
+  ReputationRegistryAbi,
+};
 
 /**
  * Official Binance Agent ID contract (BNB Chain mainnet, ERC-721,
@@ -29,6 +36,16 @@ export const CONTRACTS = {
   agentID:
     "0x9DC34D613282A0EF9aEd445243141f0EbAf0fa69" as const, // MockAgentID (testnet only)
 } as const;
+
+/**
+ * True when this deployment points the identity check at the
+ * testnet-only MockAgentID instead of the real Agent ID. Only true
+ * on the testnet deployment; a mainnet deployment sets
+ * CONTRACTS.agentID to AGENT_ID_ADDRESS and this is false.
+ */
+export const IS_MOCK_AGENT_ID =
+  (CONTRACTS.agentID as string).toLowerCase() !==
+  AGENT_ID_ADDRESS.toLowerCase();
 
 export const ZERO_ADDRESS =
   "0x0000000000000000000000000000000000000000" as const;
