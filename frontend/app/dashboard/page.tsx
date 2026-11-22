@@ -52,7 +52,7 @@ export default function DashboardPage() {
           <StatCard label="Active disputes" value={String(activeDisputes.length)} sub="Disputed or in arbitration" />
           <StatCard label="Completed arbitrations" value={String(completed.length)} sub="Completed or resolved jobs" />
           <StatCard label="Total escrow volume" value={formatBnb(volume)} sub="Sum of all job amounts" />
-          <StatCard label="Registered jurors" value={poolSize === undefined ? "—" : poolSize.toString()} sub="Agent ID holders in the pool" />
+          <StatCard label="Registered jurors" value={poolSize === undefined ? "N/A" : poolSize.toString()} sub="Agent ID holders in the pool" />
         </div>
 
         {address && (

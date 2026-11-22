@@ -43,7 +43,7 @@ export default function ReputationPage() {
         <p className="mt-1 max-w-2xl text-mist">
           Public, on-chain reputation for any wallet: completed jobs,
           disputes won and lost, cases judged, missed reveals. Losing a
-          dispute is recorded as a fact — it is not, by itself, proof of
+          dispute is recorded as a fact, it is not, by itself, proof of
           dishonesty.
         </p>
       </div>
@@ -85,7 +85,7 @@ export default function ReputationPage() {
 
       {target && (
         <DeployedGate>
-          <Card title={`Profile — ${shortAddress(target)}`} wide>
+          <Card title={`Profile, ${shortAddress(target)}`} wide>
             <p className="mb-4 break-all font-mono text-xs text-mist">
               {target}
             </p>
@@ -104,13 +104,13 @@ export default function ReputationPage() {
               )}
             </p>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <StatCard label="Jobs completed" value={r ? String(r.jobsCompleted) : "—"} sub="As client or worker" />
-              <StatCard label="Disputes won" value={r ? String(r.disputesWon) : "—"} />
-              <StatCard label="Disputes lost" value={r ? String(r.disputesLost) : "—"} />
-              <StatCard label="Disputes split" value={r ? String(r.disputesSplit) : "—"} />
-              <StatCard label="Cases judged" value={r ? String(r.casesJudged) : "—"} sub="As a juror" />
-              <StatCard label="Majority votes" value={r ? String(r.majorityVotes) : "—"} sub="Reveals matching the verdict" />
-              <StatCard label="Missed reveals" value={r ? String(r.missedReveals) : "—"} sub="Commits never revealed" />
+              <StatCard label="Jobs completed" value={r ? String(r.jobsCompleted) : "N/A"} sub="As client or worker" />
+              <StatCard label="Disputes won" value={r ? String(r.disputesWon) : "N/A"} />
+              <StatCard label="Disputes lost" value={r ? String(r.disputesLost) : "N/A"} />
+              <StatCard label="Disputes split" value={r ? String(r.disputesSplit) : "N/A"} />
+              <StatCard label="Cases judged" value={r ? String(r.casesJudged) : "N/A"} sub="As a juror" />
+              <StatCard label="Majority votes" value={r ? String(r.majorityVotes) : "N/A"} sub="Reveals matching the verdict" />
+              <StatCard label="Missed reveals" value={r ? String(r.missedReveals) : "N/A"} sub="Commits never revealed" />
               <StatCard
                 label="Juror reliability"
                 value={
@@ -118,7 +118,7 @@ export default function ReputationPage() {
                     ? `${Math.round(
                         (r.casesJudged / (r.casesJudged + r.missedReveals)) * 100,
                       )}%`
-                    : "—"
+                    : "N/A"
                 }
                 sub="Revealed / (revealed + missed)"
               />

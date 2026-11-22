@@ -34,7 +34,7 @@ export default function DisputesPage() {
         <h1 className="text-3xl font-bold text-white">Dispute Center</h1>
         <p className="mt-1 max-w-2xl text-mist">
           Every dispute, its evidence reference, jury status, voting
-          progress and final verdict — read from the contracts. Evidence
+          progress and final verdict, read from the contracts. Evidence
           itself is never stored on-chain: only its hash is.
         </p>
       </div>
@@ -95,8 +95,7 @@ export default function DisputesPage() {
               the same fee; if they do not, the client wins by default.
             </li>
             <li>
-              Five jurors are drawn at random from the Agent ID holder pool
-              — never the parties, never twice in one case. Anyone can
+              Five jurors are drawn at random from the Agent ID holder pool, never the parties, never twice in one case. Anyone can
               trigger the draw once the target block has passed.
             </li>
             <li>

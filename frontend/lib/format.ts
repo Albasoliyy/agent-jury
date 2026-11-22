@@ -6,13 +6,13 @@ export function shortAddress(addr: string): string {
 }
 
 export function formatBnb(wei: bigint | undefined | null): string {
-  if (wei === undefined || wei === null) return "—";
+  if (wei === undefined || wei === null) return "N/A";
   return `${formatEther(wei)} BNB`;
 }
 
 export function formatDate(unixSeconds: number | bigint): string {
   const ms = Number(unixSeconds) * 1000;
-  if (!ms || Number.isNaN(ms)) return "—";
+  if (!ms || Number.isNaN(ms)) return "N/A";
   return new Date(ms).toLocaleString(undefined, {
     year: "numeric",
     month: "short",

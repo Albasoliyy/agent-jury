@@ -24,7 +24,7 @@ export default function AnalyticsPage() {
 
   // Average resolution time needs creation/finalization timestamps from
   // events; contract reads alone cannot provide it.
-  const avgResolution = "—";
+  const avgResolution = "N/A";
 
   return (
     <div className="space-y-6">
@@ -32,7 +32,7 @@ export default function AnalyticsPage() {
         <h1 className="text-3xl font-bold text-white">Protocol Analytics</h1>
         <p className="mt-1 max-w-2xl text-mist">
           Real on-chain data only. Anything that cannot be read from the
-          contracts is labelled as unavailable — never estimated.
+          contracts is labelled as unavailable, never estimated.
         </p>
       </div>
 
@@ -44,9 +44,9 @@ export default function AnalyticsPage() {
           <StatCard label="Total disputes" value={String(disputed.length)} sub="Opened, in arbitration or resolved" />
           <StatCard label="Resolved disputes" value={String(resolved.length)} sub="Verdict finalized on-chain" />
           <StatCard label="Jobs completed without dispute" value={String(completed.length)} sub="Approved or claimed after timeout" />
-          <StatCard label="Registered jurors" value={poolSize === undefined ? "—" : poolSize.toString()} sub="Agent ID holders in the pool" />
-          <StatCard label="Dispute rate" value={jobs.length ? `${((disputed.length / jobs.length) * 100).toFixed(1)}%` : "—"} sub="Disputes / total jobs" />
-          <StatCard label="Juror participation" value="—" sub="Reveals per case — from events, available after deployment" />
+          <StatCard label="Registered jurors" value={poolSize === undefined ? "N/A" : poolSize.toString()} sub="Agent ID holders in the pool" />
+          <StatCard label="Dispute rate" value={jobs.length ? `${((disputed.length / jobs.length) * 100).toFixed(1)}%` : "N/A"} sub="Disputes / total jobs" />
+          <StatCard label="Juror participation" value="N/A" sub="Reveals per case, from events, available after deployment" />
           <StatCard label="Avg resolution time" value={avgResolution} sub="From JobCreated → DisputeResolved events, available after deployment" />
         </div>
 
@@ -66,7 +66,7 @@ export default function AnalyticsPage() {
           <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-mist">
             <li>
               Totals above come from direct contract reads (jobCount,
-              jobs, cases, poolSize) — no indexer, no estimates.
+              jobs, cases, poolSize), no indexer, no estimates.
             </li>
             <li>
               Transaction counts and unique Agent ID addresses come from

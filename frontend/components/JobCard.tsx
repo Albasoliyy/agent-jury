@@ -52,7 +52,7 @@ export function JobCard({ id, job, caseData, disputeFee }: JobCardProps) {
           <p className="mt-1 text-xs text-mist">
             Client {shortAddress(job.client)} · Worker{" "}
             {job.worker === "0x0000000000000000000000000000000000000000"
-              ? "—"
+              ? "N/A"
               : shortAddress(job.worker)}
           </p>
         </div>
@@ -103,7 +103,7 @@ export function JobCard({ id, job, caseData, disputeFee }: JobCardProps) {
             <code className="break-all font-mono text-xs text-slate-200">
               {job.evidenceHash ===
               "0x0000000000000000000000000000000000000000000000000000000000000000"
-                ? "—"
+                ? "N/A"
                 : job.evidenceHash}
             </code>
           </p>
@@ -196,7 +196,7 @@ export function JobCard({ id, job, caseData, disputeFee }: JobCardProps) {
           <TxButton
             label="Claim after review timeout"
             disabled={now <= Number(job.reviewDeadline)}
-            title="The client stayed silent past the review window — claim the payment."
+            title="The client stayed silent past the review window, claim the payment."
             prepare={() => ({
               address: CONTRACTS.jobEscrow,
               abi: JobEscrowAbi,
@@ -209,7 +209,7 @@ export function JobCard({ id, job, caseData, disputeFee }: JobCardProps) {
           <TxButton
             label="Reclaim undelivered (after deadline)"
             disabled={now <= Number(job.workDeadline)}
-            title="The worker accepted but never delivered past the deadline — reclaim the escrow."
+            title="The worker accepted but never delivered past the deadline, reclaim the escrow."
             prepare={() => ({
               address: CONTRACTS.jobEscrow,
               abi: JobEscrowAbi,
@@ -247,7 +247,7 @@ export function JobCard({ id, job, caseData, disputeFee }: JobCardProps) {
         {job.status === 4 && now > Number(job.matchDeadline) && (
           <TxButton
             label="Default judgment (worker never matched)"
-            title="The worker never matched the dispute fee — the client wins by default."
+            title="The worker never matched the dispute fee, the client wins by default."
             prepare={() => ({
               address: CONTRACTS.jobEscrow,
               abi: JobEscrowAbi,

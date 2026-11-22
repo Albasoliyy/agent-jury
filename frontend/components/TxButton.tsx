@@ -70,7 +70,7 @@ export function TxButton({
       {hash && (
         <span className="max-w-64 break-all font-mono text-[11px] text-mist">
           tx {hash}
-          {confirmed ? " — confirmed" : ""}
+          {confirmed ? ", confirmed" : ""}
         </span>
       )}
       {error && (

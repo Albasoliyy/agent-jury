@@ -98,7 +98,7 @@ export default function HirePage() {
               </div>
               <div>
                 <label className="mb-1 block text-sm font-medium text-slate-200">Acceptance criteria</label>
-                <textarea className={`${inputCls} min-h-20`} value={criteria} onChange={(e) => setCriteria(e.target.value)} placeholder="What counts as done? Be specific — a jury reads this if there is a dispute." />
+                <textarea className={`${inputCls} min-h-20`} value={criteria} onChange={(e) => setCriteria(e.target.value)} placeholder="What counts as done? Be specific, a jury reads this if there is a dispute." />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -115,10 +115,10 @@ export default function HirePage() {
                 <p className="text-mist">
                   You will send{" "}
                   <span className="font-semibold text-white">
-                    {amountWei > 0n ? `${amount} BNB` : "—"}
+                    {amountWei > 0n ? `${amount} BNB` : "N/A"}
                   </span>{" "}
                   with the createJob transaction. The BNB is held by the
-                  escrow contract — not by us, not by the worker — until the
+                  escrow contract, not by us, not by the worker, until the
                   job completes or a verdict is executed.
                 </p>
                 <p className="mt-2 text-mist">
@@ -139,7 +139,7 @@ export default function HirePage() {
                   args: [amountWei, BigInt(deadlineUnix), specHash],
                   value: amountWei,
                 })}
-                onSuccess={() => setCreatedJobId("created — check the Dashboard for the new job id")}
+                onSuccess={() => setCreatedJobId("created, check the Dashboard for the new job id")}
               />
               {createdJobId && (
                 <p className="text-sm text-emerald-400">
@@ -151,7 +151,7 @@ export default function HirePage() {
 
           <Card title="On-chain spec (what the contract stores)">
             <p className="text-sm text-mist">
-              Only this hash goes on-chain. Keep the JSON below — pin it to
+              Only this hash goes on-chain. Keep the JSON below, pin it to
               IPFS and share the CID with the worker. A jury reads the spec
               to judge a dispute, so write it precisely.
             </p>
@@ -165,7 +165,7 @@ export default function HirePage() {
               </code>
             </p>
             <p className="mt-2 text-xs text-mist">
-              Note: in-browser IPFS pinning is not wired in yet — copy the
+              Note: in-browser IPFS pinning is not wired in yet, copy the
               JSON and pin it yourself (e.g. Pinata, web3.storage) until the
               integration lands. The contract only ever sees the hash.
             </p>

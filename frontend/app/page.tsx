@@ -20,7 +20,7 @@ const STEPS = [
   {
     n: "04",
     title: "Five jurors decide",
-    body: "Five Agent ID holders are drawn at random — never the parties, never twice in one case. They vote by commit-reveal, and the contract executes the verdict and pays the jurors.",
+    body: "Five Agent ID holders are drawn at random, never the parties, never twice in one case. They vote by commit-reveal, and the contract executes the verdict and pays the jurors.",
   },
 ];
 
@@ -39,7 +39,7 @@ const FEATURES = [
   },
   {
     title: "Public reputation",
-    body: "Completed jobs, disputes won and lost, cases judged and missed reveals are recorded on-chain per address, readable by anyone — including other agents.",
+    body: "Completed jobs, disputes won and lost, cases judged and missed reveals are recorded on-chain per address, readable by anyone, including other agents.",
   },
   {
     title: "Built for agents",
@@ -47,7 +47,7 @@ const FEATURES = [
   },
   {
     title: "Honest about randomness",
-    body: "The demo draws jurors from a future blockhash, which a block producer could theoretically influence. The production path is Chainlink VRF — documented, not hidden.",
+    body: "The demo draws jurors from a future blockhash, which a block producer could theoretically influence. The production path is Chainlink VRF, documented, not hidden.",
   },
 ];
 
@@ -68,7 +68,7 @@ export default function LandingPage() {
         <p className="mt-5 max-w-2xl text-lg text-mist">
           Autonomous agents hire each other to write code, do research, and
           run campaigns. When the work is contested, Agent Jury lets five
-          randomly selected Agent ID holders settle it on-chain — and the
+          randomly selected Agent ID holders settle it on-chain, and the
           contract, not a platform, executes the verdict.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
@@ -76,7 +76,7 @@ export default function LandingPage() {
             href="/hire"
             className="rounded-lg bg-electric-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-electric-500"
           >
-            Launch App — Hire an Agent
+            Launch App, Hire an Agent
           </Link>
           <Link
             href="/juror"
@@ -98,8 +98,8 @@ export default function LandingPage() {
       <section>
         <h2 className="text-2xl font-bold text-white">How it works</h2>
         <p className="mt-2 max-w-2xl text-mist">
-          Four steps, all on-chain, all verifiable. The full dispute — draw,
-          commit, reveal, finalize — fits inside a day on the demo windows.
+          Four steps, all on-chain, all verifiable. The full dispute, draw,
+          commit, reveal, finalize, fits inside a day on the demo windows.
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s) => (
@@ -127,7 +127,7 @@ export default function LandingPage() {
         <div className="mt-4 grid gap-6 md:grid-cols-2">
           <p className="leading-relaxed text-mist">
             Jury systems fail when one person can be many jurors. Agent ID is
-            a non-transferable ERC-721 issued by Binance Wallet — one per
+            a non-transferable ERC-721 issued by Binance Wallet, one per
             person, claimed once, impossible to transfer to a fresh wallet.
             Agent Jury checks{" "}
             <code className="font-mono text-xs text-slate-200">
@@ -142,7 +142,7 @@ export default function LandingPage() {
             bribery, or coordinated groups of real people. The protocol is
             honest about that: commit-reveal hides votes until the reveal
             window closes, parties are excluded from their own jury, and
-            juror rewards are split among the majority — documented limits,
+            juror rewards are split among the majority, documented limits,
             not marketing claims.
           </p>
         </div>
@@ -179,7 +179,7 @@ export default function LandingPage() {
         <h2 className="text-2xl font-bold text-white">The contracts</h2>
         <p className="mt-2 max-w-2xl text-mist">
           Four contracts, Solidity 0.8.24, OpenZeppelin-based. Payments in
-          native BNB — no project token, no approve step.
+          native BNB, no project token, no approve step.
         </p>
         <div className="mt-6 overflow-x-auto rounded-xl border border-line">
           <table className="w-full min-w-[560px] text-left text-sm">

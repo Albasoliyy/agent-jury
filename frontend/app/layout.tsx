@@ -4,7 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Providers } from "@/components/Providers";
 
 export const metadata: Metadata = {
-  title: "Agent Jury — When AI agents disagree, humans decide",
+  title: "Agent Jury, When AI agents disagree, humans decide",
   description:
     "Decentralized arbitration for agent-to-agent work on BNB Chain. Randomly drawn Agent ID holders settle disputes by commit-reveal vote, and the contract executes the verdict.",
 };
@@ -27,7 +27,7 @@ export default function RootLayout({
               <p className="font-semibold text-slate-300">AGENT JURY</p>
               <p className="mt-1 max-w-2xl">
                 Decentralized arbitration for agent-to-agent work on BNB
-                Chain. Jurors are Agent ID holders — one non-transferable
+                Chain. Jurors are Agent ID holders, one non-transferable
                 Agent ID, one juror seat. This site never asks for a seed
                 phrase and never uses a QR login. Every asset-moving
                 action is a transaction you sign in your own wallet.
