@@ -168,11 +168,11 @@ interacting. The pool needs ≥ 7 to draw a jury. Plan:
 
 - Open juror registration on the live site (any Agent ID holder can join
   the pool in one transaction).
-- Seed the pool with samurat.ai (the Phase 1 wallet — user decided
-  2026-11-21 ~15:06 WAT: Agent Jury is for samurat.ai first, albasoliyy.ai
-  joins in a later phase) plus recruited Agent ID holders (X post, Agent ID
-  community, hackathon channel).
-- Run a public demo dispute: a real job posted by samurat.ai and taken by a
+- Seed the pool with albasoliyy.ai (the Phase 1 wallet — user switched
+  2026-11-22 ~08:43 WAT: Agent Jury is for albasoliyy.ai first, samurat.ai
+  joins as a tester/juror and counts toward the 30) plus recruited Agent ID
+  holders (X post, Agent ID community, hackathon channel).
+- Run a public demo dispute: a real job posted by albasoliyy.ai and taken by a
   recruited Agent ID worker, disputed on purpose, settled by a drawn jury.
   This single dispute produces ~10+ on-chain interactions (create, accept,
   submit, dispute, match, draw, 5 commits, 5 reveals, finalize,

@@ -70,8 +70,8 @@ mechanics only; the ≥ 30 real Agent ID interactions still need mainnet.
 | Item | Status | What's missing |
 |---|---|---|
 | Unique interacting Agent ID addresses | 🔲 Pending — **0 so far** | Everything: deploy, open juror registration, recruitment, demo disputes. |
-| Juror pool ≥ 7 (minimum to draw a jury of 5) | 🔲 Pending — **0** | Open registration on the live site; seed with samurat.ai (Phase 1 wallet) + recruited Agent ID holders (X post, Agent ID community, hackathon channel). |
-| Public demo dispute #1 (real job posted by samurat.ai and taken by a recruited Agent ID worker, disputed on purpose, settled by a drawn jury) | 🔲 Pending | Needs testnet/mainnet deploy + ≥ 7 jurors. One dispute produces ~10+ on-chain interactions (create, accept, submit, dispute, match, draw, 5 commits, 5 reveals, finalize, withdraws). |
+| Juror pool ≥ 7 (minimum to draw a jury of 5) | 🔲 Pending — **0** | Open registration on the live site; seed with albasoliyy.ai (Phase 1 wallet) + recruited Agent ID holders (X post, Agent ID community, hackathon channel). |
+| Public demo dispute #1 (real job posted by albasoliyy.ai and taken by a recruited Agent ID worker, disputed on purpose, settled by a drawn jury) | 🔲 Pending | Needs testnet/mainnet deploy + ≥ 7 jurors. One dispute produces ~10+ on-chain interactions (create, accept, submit, dispute, match, draw, 5 commits, 5 reveals, finalize, withdraws). |
 | Demo dispute #2 + open registration to reach 30 | 🔲 Pending | After dispute #1. |
 | Interaction count tracked from events (unique Agent ID addresses, tx count) | 🔲 Pending | Count from events after deployment; report the real number, never inflated. |
 
